@@ -56,8 +56,8 @@ func hide_buttons() -> void:
 	
 	
 func initialize_player(player:CharacterBody2D):
-	player.global_position = $spawnpoint.position
-
+	player.global_position = $spawnpoint.global_position
+	print(player.global_position)
 	players.append(player)
 	
 @rpc("authority","call_local","reliable")
