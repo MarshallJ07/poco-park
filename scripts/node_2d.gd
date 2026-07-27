@@ -38,7 +38,7 @@ func get_spawn_order(num) -> void:
 func _on_button_pressed() -> void:
 	$CanvasLayer/host.disabled = true
 	Networking.host_lobby()
-
+	
 
 func _on_start_pressed() -> void:
 	if !multiplayer.is_server():
@@ -47,13 +47,13 @@ func _on_start_pressed() -> void:
 	for id in ids:
 		spawn_player.rpc(id)
 	hide_buttons.rpc()
-	add_child(preload("res://scenes/level.tscn").instantiate())
+	
 	
 @rpc("any_peer","call_local","reliable")
 func hide_buttons() -> void:
 	$CanvasLayer/host.hide()
 	$CanvasLayer/start.hide()
-	
+	add_child(preload("res://scenes/level.tscn").instantiate())
 	
 func initialize_player(player:CharacterBody2D):
 	player.global_position = $spawnpoint.global_position
