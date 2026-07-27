@@ -58,7 +58,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="spawnpoint" type="Node2D" parent="." unique_id=1048192259]
-position = Vector2(576, 359)
+position = Vector2(279, 359)
 
 [node name="players" type="Node2D" parent="." unique_id=556656917]
 

@@ -30,7 +30,6 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		print(collider)
 		if collider is RigidBody2D:
 			# 1. Only push if we are on the floor (prevents mid-air flying glitches)
 			# 2. Only push if hitting the flat sides (> 0.9)
