@@ -6,8 +6,8 @@ var abilities = [
 	"platform"
 ]
 var roles = [
-	"controller",
-	"controller",
+	#"controller",
+	#"controller",
 	"player",
 	"player"
 ]
@@ -45,14 +45,19 @@ func _ready() -> void:
 @rpc("any_peer","call_local","reliable")
 func spawn(peer_id) -> void:
 	game.spawn_player(peer_id)
+	for i in $screenWalls.get_children():
+		i.disabled = false
+	
 @rpc("any_peer","call_local","reliable")
 func assign_ability(assignedAbility:String) -> void:
 	ability = assignedAbility
 	$CanvasLayer/ability.text = ability
+	
 @rpc("any_peer","call_local","reliable")
 func assign_role(assignedRole:String) -> void:
 	role = assignedRole
 	$CanvasLayer/role.text = role
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ability"):
 		if ability == "gravity":

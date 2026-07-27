@@ -36,9 +36,26 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "START"
 
-[node name="waiting" type="Button" parent="CanvasLayer" unique_id=1555764955]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="waiting" type="Label" parent="CanvasLayer" unique_id=481084990]
+visible = false
+offset_left = 544.0
+offset_top = 345.0
+offset_right = 611.0
+offset_bottom = 376.0
+text = "Waiting"
+
+[node name="amountOfPlayers" type="Label" parent="CanvasLayer" unique_id=291185903]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -232.0
+offset_top = 14.0
+offset_right = 241.0
+offset_bottom = 37.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="spawnpoint" type="Node2D" parent="." unique_id=1048192259]
 position = Vector2(576, 359)
@@ -46,6 +63,7 @@ position = Vector2(576, 359)
 [node name="players" type="Node2D" parent="." unique_id=556656917]
 
 [node name="cam" type="Camera2D" parent="." unique_id=728751078]
+position = Vector2(576, 359)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=751947754]
 replication_config = SubResource("SceneReplicationConfig_6e84v")
