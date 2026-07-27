@@ -26,7 +26,6 @@ func _ready() -> void:
 func assign_ability(assignedAbility:String) -> void:
 	
 	ability = assignedAbility
-	ability = "platform"
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ability"):
