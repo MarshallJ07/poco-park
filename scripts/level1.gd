@@ -39,8 +39,8 @@ func _ready() -> void:
 			i.get_child(0).disabled = true
 			i.get_child(1).modulate = Color("333333ff")
 	
-	$CanvasLayer/role.text = role
-	$CanvasLayer/ability.text = ability
+	
+	
 
 @rpc("any_peer","call_local","reliable")
 func spawn(peer_id) -> void:
@@ -48,11 +48,11 @@ func spawn(peer_id) -> void:
 @rpc("any_peer","call_local","reliable")
 func assign_ability(assignedAbility:String) -> void:
 	ability = assignedAbility
-	
+	$CanvasLayer/ability.text = ability
 @rpc("any_peer","call_local","reliable")
 func assign_role(assignedRole:String) -> void:
 	role = assignedRole
-	
+	$CanvasLayer/role.text = role
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ability"):
 		if ability == "gravity":
