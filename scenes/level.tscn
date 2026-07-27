@@ -18,6 +18,11 @@ size = Vector2(32, 673)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r41h"]
 size = Vector2(1177, 52)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w7c3h"]
+properties/0/path = NodePath("screenWalls:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="level1" type="Node2D" unique_id=1636448391]
 script = ExtResource("1_w7c3h")
 
@@ -50,3 +55,6 @@ shape = SubResource("RectangleShape2D_ppgk2")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="screenWalls" unique_id=2043237590]
 position = Vector2(-1, 350)
 shape = SubResource("RectangleShape2D_2r41h")
+
+[node name="MultiplayerSpawner" type="MultiplayerSynchronizer" parent="." unique_id=779222885]
+replication_config = SubResource("SceneReplicationConfig_w7c3h")
