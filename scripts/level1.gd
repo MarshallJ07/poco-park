@@ -32,10 +32,10 @@ func _physics_process(delta: float) -> void:
 	cam.position = cam.position.lerp(targetCam, 5 * delta)
 	
 	print(cam.position + get_viewport_rect().size / cam.zoom)
-	_create_wall(StaticBody2D.new(), Vector2.LEFT, cam.position + (get_viewport_rect().size / cam.zoom / 2) )
-	_create_wall(StaticBody2D.new(), Vector2.RIGHT, cam.position - (get_viewport_rect().size / cam.zoom / 2) )
-	_create_wall(StaticBody2D.new(), Vector2.UP, cam.position + (get_viewport_rect().size / cam.zoom / 2) )
-	_create_wall(StaticBody2D.new(), Vector2.DOWN, cam.position - (get_viewport_rect().size / cam.zoom / 2) )
+	_create_wall(StaticBody2D.new(), Vector2.LEFT, Vector2(cam.position[0] + (get_viewport_rect().size[0] / cam.zoom[0] / 2),0) )
+	_create_wall(StaticBody2D.new(), Vector2.RIGHT, Vector2(cam.position[0] - (get_viewport_rect().size[0] / cam.zoom[0] / 2),0) )
+	_create_wall(StaticBody2D.new(), Vector2.UP, Vector2(0, cam.position[1] + (get_viewport_rect().size[1] / cam.zoom[1] / 2)) )
+	_create_wall(StaticBody2D.new(), Vector2.DOWN, Vector2(0, cam.position[1] - (get_viewport_rect().size[1] / cam.zoom[1] / 2)) )
 
 
 func _create_wall(body: Node, normal: Vector2, pos: Vector2):
