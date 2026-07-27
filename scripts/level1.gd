@@ -20,22 +20,21 @@ var controllers: Array[int] = []
 @onready var players: Node2D = get_parent().get_node("players")
 
 func _ready() -> void:
-	if !multiplayer.is_server():
-		return
-	abilities.shuffle()
-	roles.shuffle()
-	
-	for index in game.ids.size():
-		assign_role.rpc_id(game.ids[index],roles[index])
-		if roles[index] == "controller":
-			controllers.append(game.ids[index])
-	for index in controllers.size():
-		assign_ability.rpc_id(controllers[index],abilities[index])
-	
-	if activePlatform == 1:
-		for i in $"spawnable platforms1".get_children():
-			i.get_child(0).disabled = true
-			i.get_child(1).modulate = Color("333333ff")
+	if multiplayer.is_server():
+		abilities.shuffle()
+		roles.shuffle()
+		
+		for index in game.ids.size():
+			assign_role.rpc_id(game.ids[index],roles[index])
+			if roles[index] == "controller":
+				controllers.append(game.ids[index])
+		for index in controllers.size():
+			assign_ability.rpc_id(controllers[index],abilities[index])
+		
+		if activePlatform == 1:
+			for i in $"spawnable platforms1".get_children():
+				i.get_child(0).disabled = true
+				i.get_child(1).modulate = Color("333333ff")
 			
 	print("role: ",role," ability: ",ability)
 @rpc("any_peer","call_local","reliable")
