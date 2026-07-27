@@ -11,7 +11,7 @@ var ability: String
 var activePlatform = 1
 @onready var game: Node2D = get_parent()
 @onready var cam: Camera2D = get_parent().get_node("cam")
-@onready var player: CharacterBody2D = get_parent().get_node("players").get_node(str(multiplayer.get_unique_id()))
+@onready var players: Node2D = get_parent().get_node("players")
 
 func _ready() -> void:
 	roles.shuffle()
@@ -29,15 +29,6 @@ func assign_ability(assignedAbility:String) -> void:
 	ability = "platform"
 	
 func _physics_process(delta: float) -> void:
-	if !multiplayer.is_server():
-		return
-	var targetCam := Vector2.ZERO
-	for player in game.players:
-		targetCam += player.position
-	targetCam /= game.players.size()
-	cam.position = cam.position.lerp(targetCam, 5 * delta)
-	$screenWalls.position = cam.position
-	
 	if Input.is_action_just_pressed("ability"):
 		if ability == "gravity":
 			switch_grav.rpc()
@@ -48,18 +39,31 @@ func _physics_process(delta: float) -> void:
 		if ability == "platform":
 			change_platforms.rpc()
 			
+	if !multiplayer.is_server():
+		return
+	var targetCam := Vector2.ZERO
+	for player in game.players:
+		targetCam += player.position
+	targetCam /= game.players.size()
+	cam.position = cam.position.lerp(targetCam, 5 * delta)
+	$screenWalls.position = cam.position
+	
+	
+			
 @rpc("any_peer","call_local","reliable")
 func switch_grav() -> void:
-	player.gravDir *= -1
+	for player in players.get_children():
+		player.gravDir *= -1
 	
 @rpc("any_peer","call_local","reliable")
 func change_size() -> void:
-	if player.scale == Vector2(1.0,1.0):
-		player.scale = Vector2(2.0,2.0)
-	elif player.scale == Vector2(2.0,2.0):
-		player.scale = Vector2(0.5,0.5)
-	elif player.scale == Vector2(0.5,0.5):
-		player.scale = Vector2(1.0,1.0)
+	for player in players.get_children():
+		if player.scale == Vector2(1.0,1.0):
+			player.scale = Vector2(2.0,2.0)
+		elif player.scale == Vector2(2.0,2.0):
+			player.scale = Vector2(0.5,0.5)
+		elif player.scale == Vector2(0.5,0.5):
+			player.scale = Vector2(1.0,1.0)
 	
 @rpc("any_peer","call_local","reliable")
 func change_platforms() -> void:
