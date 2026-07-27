@@ -4,15 +4,11 @@ extends Node2D
 
 const PROTO_CONTROLLER = preload("uid://bs72ogkvdd7d6")
 
-
 var players: Array[CharacterBody2D]
 var spawnOrder: int
 var currentSpawn: int = 0
 
-var roles = [
-	"gravitor",
-	"hopper",
-]
+
 
 
 
@@ -28,8 +24,9 @@ func _ready():
 func _on_host_created():
 	spawnOrder = currentSpawn
 	currentSpawn += 1
-	
+	ids.append(1)
 func _peer_connected(peer_id:int):
+	print(1)
 	ids.append(peer_id)
 	if multiplayer.is_server():
 		get_spawn_order(currentSpawn)
@@ -46,11 +43,11 @@ func _on_button_pressed() -> void:
 func _on_start_pressed() -> void:
 	if !multiplayer.is_server():
 		return
-	spawn_player.rpc(multiplayer.get_unique_id())
+
 	for id in ids:
 		spawn_player.rpc(id)
 	hide_buttons.rpc()
-	
+	add_child(preload("res://scenes/level.tscn").instantiate())
 	
 @rpc("any_peer","call_local","reliable")
 func hide_buttons() -> void:
@@ -60,10 +57,6 @@ func hide_buttons() -> void:
 	
 func initialize_player(player:CharacterBody2D):
 	player.global_position = $spawnpoint.position
-
-	for other in players:
-		player.add_collision_exception_with(other)
-		other.add_collision_exception_with(player)
 
 	players.append(player)
 	

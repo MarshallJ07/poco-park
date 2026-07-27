@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://brro56w3lexhh"]
 
 [ext_resource type="Script" uid="uid://c5m7umqwe05vx" path="res://scripts/node_2d.gd" id="1_6e84v"]
-[ext_resource type="PackedScene" uid="uid://ct5h8omfpa3mq" path="res://scenes/level.tscn" id="2_4dvvg"]
 
 [node name="game" type="Node2D" unique_id=1350037165]
 script = ExtResource("1_6e84v")
@@ -37,8 +36,6 @@ offset_bottom = 8.0
 position = Vector2(576, 359)
 
 [node name="players" type="Node2D" parent="." unique_id=556656917]
-
-[node name="level" parent="." unique_id=1636448391 instance=ExtResource("2_4dvvg")]
 
 [connection signal="pressed" from="CanvasLayer/host" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/start" to="." method="_on_start_pressed"]

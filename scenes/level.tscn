@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ct5h8omfpa3mq"]
 
 [ext_resource type="Texture2D" uid="uid://cd7yi3yc0n3n0" path="res://icon.svg" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://2ywnihyldorg" path="res://scripts/level1.gd" id="1_w7c3h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(1197, 126)
 
-[node name="level" type="Node2D" unique_id=1636448391]
+[node name="level1" type="Node2D" unique_id=1636448391]
+script = ExtResource("1_w7c3h")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1529097999]
 
