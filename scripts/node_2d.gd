@@ -26,7 +26,6 @@ func _on_host_created():
 	currentSpawn += 1
 	ids.append(1)
 func _peer_connected(peer_id:int):
-	print(1)
 	ids.append(peer_id)
 	if multiplayer.is_server():
 		get_spawn_order(currentSpawn)
@@ -43,6 +42,7 @@ func _on_button_pressed() -> void:
 func _on_start_pressed() -> void:
 	if !multiplayer.is_server():
 		return
+
 
 	hide_buttons.rpc()
 	
