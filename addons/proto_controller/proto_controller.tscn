@@ -10,6 +10,9 @@ properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hfox"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wr06p"]
+size = Vector2(18, 2)
+
 [node name="ProtoController" type="CharacterBody2D" unique_id=1639081910]
 script = ExtResource("1_ucva2")
 
@@ -23,3 +26,9 @@ shape = SubResource("RectangleShape2D_5hfox")
 position = Vector2(4.7683716e-07, 0)
 scale = Vector2(0.1601562, 0.1601562)
 texture = ExtResource("2_wr06p")
+
+[node name="head" type="Area2D" parent="." unique_id=703511707]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head" unique_id=444080184]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_wr06p")
