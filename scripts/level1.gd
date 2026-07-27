@@ -28,15 +28,22 @@ func _ready() -> void:
 			assign_role.rpc_id(game.ids[index],roles[index])
 			if roles[index] == "controller":
 				controllers.append(game.ids[index])
+			else:
+				game.spawn_player(game.ids[index])
 		for index in controllers.size():
 			assign_ability.rpc_id(controllers[index],abilities[index])
 		
-		if activePlatform == 1:
-			for i in $"spawnable platforms1".get_children():
-				i.get_child(0).disabled = true
-				i.get_child(1).modulate = Color("333333ff")
-			
-	print("role: ",role," ability: ",ability)
+		
+	if activePlatform == 1:
+		for i in $"spawnable platforms1".get_children():
+			i.get_child(0).disabled = true
+			i.get_child(1).modulate = Color("333333ff")
+	
+	print(role)
+
+@rpc("any_peer","call_local","reliable")
+func print_role(role) -> void:
+	print(role)
 @rpc("any_peer","call_local","reliable")
 func assign_ability(assignedAbility:String) -> void:
 	ability = assignedAbility

@@ -44,8 +44,6 @@ func _on_start_pressed() -> void:
 	if !multiplayer.is_server():
 		return
 
-	for id in ids:
-		spawn_player.rpc(id)
 	hide_buttons.rpc()
 	
 	
@@ -57,7 +55,6 @@ func hide_buttons() -> void:
 	
 func initialize_player(player:CharacterBody2D):
 	player.global_position = $spawnpoint.global_position
-	print(player.global_position)
 	players.append(player)
 	
 @rpc("authority","call_local","reliable")
