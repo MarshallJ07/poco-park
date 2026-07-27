@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bs72ogkvdd7d6"]
+
+[ext_resource type="Script" uid="uid://djcqrencjwdv8" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
+[ext_resource type="Texture2D" uid="uid://cd7yi3yc0n3n0" path="res://icon.svg" id="2_wr06p"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g2uji"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head/Camera3D:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Head/Camera3D:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hfox"]
+
+[node name="ProtoController" type="CharacterBody2D" unique_id=1639081910]
+script = ExtResource("1_ucva2")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=273825486]
+replication_config = SubResource("SceneReplicationConfig_g2uji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1682767196]
+shape = SubResource("RectangleShape2D_5hfox")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=742361795]
+position = Vector2(4.7683716e-07, 0)
+scale = Vector2(0.1601562, 0.1601562)
+texture = ExtResource("2_wr06p")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=42885676]
