@@ -9,7 +9,10 @@ var players: Array[CharacterBody2D]
 var spawnOrder: int
 var currentSpawn: int = 0
 
-
+var roles = [
+	"gravitor",
+	"hopper",
+]
 
 
 
