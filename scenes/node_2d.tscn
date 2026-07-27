@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c5m7umqwe05vx" path="res://scripts/node_2d.gd" id="1_6e84v"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6e84v"]
+properties/0/path = NodePath("cam:zoom")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("cam:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="game" type="Node2D" unique_id=1350037165]
 script = ExtResource("1_6e84v")
 
@@ -36,6 +44,11 @@ offset_bottom = 8.0
 position = Vector2(576, 359)
 
 [node name="players" type="Node2D" parent="." unique_id=556656917]
+
+[node name="cam" type="Camera2D" parent="." unique_id=728751078]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=751947754]
+replication_config = SubResource("SceneReplicationConfig_6e84v")
 
 [connection signal="pressed" from="CanvasLayer/host" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/start" to="." method="_on_start_pressed"]
