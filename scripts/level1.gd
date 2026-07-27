@@ -39,7 +39,8 @@ func _ready() -> void:
 			i.get_child(0).disabled = true
 			i.get_child(1).modulate = Color("333333ff")
 	
-
+	$CanvasLayer/role.text = role
+	$CanvasLayer/ability.text = ability
 
 @rpc("any_peer","call_local","reliable")
 func spawn(peer_id) -> void:
