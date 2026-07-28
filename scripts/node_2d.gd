@@ -75,6 +75,7 @@ func free_everything() -> void:
 func hide_buttons() -> void:
 	$CanvasLayer/host.hide()
 	$CanvasLayer/start.hide()
+	$CanvasLayer/amountOfPlayers.hide()
 	var level = preload("res://scenes/level.tscn").instantiate()
 	level.name = "level"
 	add_child(level)
